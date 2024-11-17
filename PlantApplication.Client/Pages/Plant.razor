@@ -1,0 +1,80 @@
+﻿@page "/plant/{id:int}"
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    public PlantModel? SelectedPlantModel { get; set; }
+
+    protected override void OnInitialized()
+    {
+        LoadPlantModel();
+    }
+
+    public void LoadPlantModel()
+    {
+        var PlantModels = PlantModelGenerator();
+        SelectedPlantModel = PlantModels.FirstOrDefault(p => p.Id == Id);
+    }
+
+    public List<PlantModel> PlantModelGenerator()
+    {
+        return new List<PlantModel>
+        {
+            new PlantModel
+            {
+                Id = 1,
+                Name = "Freddie",
+                Species = "Succulent",
+                Location = "Indoors",
+                WateringFrequency = 7,
+                Image = "images/plant.png",
+                LastWatered = DateTime.Now.AddDays(-3),
+                GrowthPercentage = 70,
+                Status = "Happy",
+                AlarmOn = false
+            },
+            new PlantModel
+            {
+                Id = 2,
+                Name = "Fred",
+                Species = "Ficus lyrata",
+                Location = "Indoors",
+                WateringFrequency = 10,
+                Image = "images/plant.png",
+                LastWatered = DateTime.Now.AddDays(-5),
+                GrowthPercentage = 40,
+                Status = "Needs Watering",
+                AlarmOn = true
+            },
+            new PlantModel
+            {
+                Id = 3,
+                Name = "Fredi Maximus",
+                Species = "Speciaal type",
+                Location = "Outdoors",
+                WateringFrequency = 14,
+                Image = "images/plant.png",
+                LastWatered = DateTime.Now.AddDays(-1),
+                GrowthPercentage = 90,
+                Status = "Thriving",
+                AlarmOn = false
+            }
+        };
+    }
+
+    public class PlantModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Species { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
+        public int WateringFrequency { get; set; }
+        public string Image { get; set; } = string.Empty;
+        public DateTime LastWatered { get; set; }
+        public int GrowthPercentage { get; set; }
+        public string Status { get; set; } = string.Empty;
+        public bool AlarmOn { get; set; } // Alarm toggle for watering reminders
+    }
+}

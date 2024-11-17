@@ -1,24 +1,69 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider Theme="@_theme" IsDarkMode="_isDarkMode" />
-<MudPopoverProvider />
-<MudDialogProvider />
-<MudSnackbarProvider />
-<MudLayout>
-    <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h5" Class="ml-3">Application</MudText>
-        <MudSpacer />
-        <MudIconButton Icon="@(DarkLightModeButtonIcon)" Color="Color.Inherit" OnClick="@DarkModeToggle" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
-    </MudAppBar>
-    <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
-        <NavMenu />
-    </MudDrawer>
-    <MudMainContent Class="mt-16 pa-4">
-        @Body
-    </MudMainContent>
-</MudLayout>
+<Layout>
+    <Layout>
+        <Sider Width="220" Class="site-layout-background">
+            <div class="logo-container">
+                <img class="main-logo" src="images/logo.png" />
+                <span class="main-logo-text">Plant<span class="main-logo-text-sub">Insights</span></span>
+            </div>
+            <Menu Mode="MenuMode.Inline"
+                  DefaultSelectedKeys=@(new[] {"1"})
+                  DefaultOpenKeys=@(new[] {"sub1"})
+                  Style="height: 100%; border-right: 0;">
+                @{
+                    RenderFragment sub1Title =
+                    @<span>
+                        <Icon Type="user" Theme="outline" />
+                        subnav 1
+                    </span>;
+                }
+                <SubMenu Key="sub1" Title=sub1Title>
+                    <MenuItem Key="1">option1</MenuItem>
+                    <MenuItem Key="2">option2</MenuItem>
+                    <MenuItem Key="3">option3</MenuItem>
+                    <MenuItem Key="4">option4</MenuItem>
+                </SubMenu>
+                @{
+                    RenderFragment sub2Title =
+                    @<span>
+                        <Icon Type="laptop" Theme="outline" />
+                        subnav 2
+                    </span>;
+                }
+                <SubMenu Key="sub2" Title=sub2Title>
+                    <MenuItem Key="5">option5</MenuItem>
+                    <MenuItem Key="6">option6</MenuItem>
+                    <MenuItem Key="7">option7</MenuItem>
+                    <MenuItem Key="8">option8</MenuItem>
+                </SubMenu>
+                @{
+                    RenderFragment sub3Title =
+                    @<span>
+                        <Icon Type="notification" Theme="outline" />
+                        subnav 3
+                    </span>;
+                }
+                <SubMenu Key="sub3" Title=sub3Title>
+                    <MenuItem Key="9">option9</MenuItem>
+                    <MenuItem Key="10">option10</MenuItem>
+                    <MenuItem Key="11">option11</MenuItem>
+                    <MenuItem Key="12">option12</MenuItem>
+                </SubMenu>
+            </Menu>
+        </Sider>
+        <Layout Style=" padding: 0 24px 24px;">
+            <Breadcrumb Style="margin: 16px 0;">
+                <BreadcrumbItem>Home</BreadcrumbItem>
+                <BreadcrumbItem>List</BreadcrumbItem>
+                <BreadcrumbItem>App</BreadcrumbItem>
+            </Breadcrumb>
+            <Content Class="ant-layout-body">
+                @Body
+            </Content>
+        </Layout>
+    </Layout>
+</Layout>
 
 
 <div id="blazor-error-ui">
@@ -27,78 +72,19 @@
     <a class="dismiss">🗙</a>
 </div>
 
+
 @code {
-    private bool _drawerOpen = true;
-    private bool _isDarkMode = true;
-    private MudTheme? _theme = null;
+    bool collapsed;
 
-    protected override void OnInitialized()
+    void toggle()
     {
-        base.OnInitialized();
-
-        _theme = new()
-        {
-            PaletteLight = _lightPalette,
-            PaletteDark = _darkPalette,
-            LayoutProperties = new LayoutProperties()
-        };
+        collapsed = !collapsed;
     }
 
-
-    private void DrawerToggle()
+    void OnCollapse(bool isCollapsed)
     {
-        _drawerOpen = !_drawerOpen;
+        Console.WriteLine($"Collapsed: {isCollapsed}");
     }
 
-    private void DarkModeToggle()
-    {
-        _isDarkMode = !_isDarkMode;
-    }
-
-    private readonly PaletteLight _lightPalette = new()
-    {
-        Black = "#110e2d",
-        AppbarText = "#424242",
-        AppbarBackground = "rgba(255,255,255,0.8)",
-        DrawerBackground = "#ffffff",
-        GrayLight = "#e8e8e8",
-        GrayLighter = "#f9f9f9",
-    };
-
-    private readonly PaletteDark _darkPalette = new()
-    {
-        Primary = "#7e6fff",
-        Surface = "#1e1e2d",
-        Background = "#1a1a27",
-        BackgroundGray = "#151521",
-        AppbarText = "#92929f",
-        AppbarBackground = "rgba(26,26,39,0.8)",
-        DrawerBackground = "#1a1a27",
-        ActionDefault = "#74718e",
-        ActionDisabled = "#9999994d",
-        ActionDisabledBackground = "#605f6d4d",
-        TextPrimary = "#b2b0bf",
-        TextSecondary = "#92929f",
-        TextDisabled = "#ffffff33",
-        DrawerIcon = "#92929f",
-        DrawerText = "#92929f",
-        GrayLight = "#2a2833",
-        GrayLighter = "#1e1e2d",
-        Info = "#4a86ff",
-        Success = "#3dcb6c",
-        Warning = "#ffb545",
-        Error = "#ff3f5f",
-        LinesDefault = "#33323e",
-        TableLines = "#33323e",
-        Divider = "#292838",
-        OverlayLight = "#1e1e2d80",
-    };
-
-    public string DarkLightModeButtonIcon => _isDarkMode switch
-    {
-        true => Icons.Material.Rounded.AutoMode,
-        false => Icons.Material.Outlined.DarkMode,
-    };
 }
-
 

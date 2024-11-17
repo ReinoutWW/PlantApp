@@ -1,0 +1,51 @@
+﻿@page "/plants"
+
+@inject NavigationManager Navigation
+
+
+
+@code {
+    private bool _readOnly = false;
+    public List<Plant> plants = new();
+
+    protected override void OnInitialized()
+    {
+        PlantGenerator();
+    }
+
+    public class Plant
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Image { get; set; } = "images/plant.png";
+        public string Species { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
+        public int WateringFrequency { get; set; } // Days between watering
+    }
+
+    public void PlantGenerator()
+    {
+        plants = new List<Plant>
+        {
+            new Plant { Id = 1, Name = "Aloe Vera", Species = "Succulent", Location = "Indoors", WateringFrequency = 7 },
+            new Plant { Id = 2, Name = "Fiddle Leaf Fig", Species = "Ficus lyrata", Location = "Indoors", WateringFrequency = 10 },
+            new Plant { Id = 3, Name = "Snake Plant", Species = "Sansevieria", Location = "Outdoors", WateringFrequency = 14 },
+            new Plant { Id = 4, Name = "Basil", Species = "Ocimum basilicum", Location = "Greenhouse", WateringFrequency = 3 }
+        };
+    }
+
+    private void StartedEditingItem(Plant item)
+    {
+        Console.WriteLine($"Started editing plant: {item.Name}");
+    }
+
+    private void CanceledEditingItem(Plant item)
+    {
+        Console.WriteLine($"Canceled editing plant: {item.Name}");
+    }
+
+    private void CommittedItemChanges(Plant item)
+    {
+        Console.WriteLine($"Committed changes for plant: {item.Name}");
+    }
+}

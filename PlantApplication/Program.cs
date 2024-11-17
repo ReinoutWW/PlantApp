@@ -1,11 +1,8 @@
-using MudBlazor.Services;
-using PlantApplication.Client.Pages;
 using PlantApplication.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add MudBlazor services
-builder.Services.AddMudServices();
+builder.Services.AddAntDesign();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

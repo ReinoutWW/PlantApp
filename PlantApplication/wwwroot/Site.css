@@ -1,0 +1,104 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.main-logo-text {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.main-logo-text-sub {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem;
+    background-color: #f0f2f5;
+}
+
+#components-layout-demo-top-side-2 .logo {
+    width: 120px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 16px 28px 16px 0;
+    float: left;
+}
+
+.site-layout-background {
+    background: #fff;
+}
+
+.ant-layout-header {
+    background-color: #f0f2f5;
+    padding: 0rem 2rem;
+}
+
+.ant-layout {
+    border-radius: 2rem;
+    height: 100%;
+    background-color: #f0f2f5;
+}
+
+.ant-menu {
+    background-color: #f0f2f5;
+}
+
+.ant-card {
+    background-color: white;
+    border-radius: 1rem;
+    width: 100%;
+    height: fit-content;
+}
+
+.ant-menu-sub.ant-menu-inline {
+    background-color: #f0f2f5;
+}
+
+.ant-menu-item {
+    border-radius: 1rem;
+}
+
+.ant-menu-item-selected,
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+    color: green;
+}
+
+.ant-menu-submenu-title:active {
+    background: white;
+}
+
+.ant-menu-item:active {
+    background: white;
+}
+
+.ant-menu-submenu-selected,
+.ant-menu-light .ant-menu-submenu-title:hover,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+    color: green;
+}
+
+.ant-menu-inline .ant-menu-selected::after, .ant-menu-inline .ant-menu-item-selected::after {
+    border-right: none;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: white;
+}
+
+.main-logo {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 0.5rem;
+}
